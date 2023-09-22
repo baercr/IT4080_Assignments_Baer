@@ -72,7 +72,6 @@ public class Player : NetworkBehaviour
     private Vector3 CalcMovement()
     {
         bool isShiftKeyDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-
         float x_move = 0.0f;
         float z_move = Input.GetAxis("Vertical");
 
