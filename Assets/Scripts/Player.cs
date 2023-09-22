@@ -40,8 +40,7 @@ public class Player : NetworkBehaviour
         }
     }
 
-    private void ApplyColor()
-    {
+    private void ApplyColor() {
         playerBody.GetComponent<MeshRenderer>().material.color = playerColorNetVar.Value;
     }
 
