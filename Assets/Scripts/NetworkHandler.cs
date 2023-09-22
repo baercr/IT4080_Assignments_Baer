@@ -60,7 +60,7 @@ public class NetworkHandler : NetworkBehaviour
     {
         PrintMe();
         // Print I {clientId} have connected to the server
-        Debug.Log($"{clientId}");
+        Debug.Log($"{clientId} has connected to the server");
         // handle the case when we are the client running on the host.  Some
         // other client connected.
     }
