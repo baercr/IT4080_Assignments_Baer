@@ -127,7 +127,7 @@ Transform:
   m_GameObject: {fileID: 7608390522343199189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.09, z: 0}
-  m_LocalScale: {x: 1.2, y: 0.15, z: 1.2}
+  m_LocalScale: {x: 1.3, y: 0.1, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5673900856792693241}
@@ -206,7 +206,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 430345944701444468, guid: b31e2e5619f514f4fab60509f85e1d3e, type: 3}
       propertyPath: m_Name
-      value: PlayerDefault Variant
+      value: PlayerWithHat
       objectReference: {fileID: 0}
     - target: {fileID: 4717429837498366348, guid: b31e2e5619f514f4fab60509f85e1d3e, type: 3}
       propertyPath: m_RootOrder
