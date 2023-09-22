@@ -30,15 +30,13 @@ public class Arena1Game : NetworkBehaviour
     {
         arenaCamera.enabled = !IsClient;
         arenaCamera.GetComponent<AudioListener>().enabled = !IsClient;
-
         if (IsServer)
         {
             SpawnPlayers();
         }
     }
 
-    private Vector3 NextPosition()
-    {
+    private Vector3 NextPosition() {
         Vector3 pos = startPositions[positionIndex];
         positionIndex += 1;
         if (positionIndex > startPositions.Length - 1)
@@ -48,20 +46,17 @@ public class Arena1Game : NetworkBehaviour
         return pos;
     }
 
-    private Color NextColor()
-    {
+    private Color NextColor() {
         Color newColor = playerColors[colorIndex];
         colorIndex += 1;
         if (colorIndex > playerColors.Length - 1)
         {
             colorIndex = 0;
         }
-
         return newColor;
     }
 
-    private void SpawnPlayers()
-    {
+    private void SpawnPlayers() {
         foreach (ulong clientId in NetworkManager.ConnectedClientsIds)
         {
             Player playerSpawn = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
