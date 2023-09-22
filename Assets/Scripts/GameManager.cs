@@ -7,12 +7,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (Application.isEditor)
+        {
+        }
+        else
+        {
+            // Turns off the stack trace for Debug.Log to cut down on log noise
+            Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.None);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnGUI()
     {
-        
+        NetworkHelper.GUILayoutNetworkControls();
     }
+
 }
