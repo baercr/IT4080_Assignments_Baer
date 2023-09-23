@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Arena1Game.unity
     guid: 0b823dc4a23b5764d89dd57b680b28b3
+  - enabled: 1
+    path: Assets/Scenes/TestChat.unity
+    guid: 399b5214300fb514e8b59be6c672dd33
   m_configObjects: {}
