@@ -32,6 +32,15 @@ public class ChatServer : NetworkBehaviour
             $"I ({NetworkManager.LocalClientId}) see you ({clientId}) have connected to the server, well done",
             NetworkManager.LocalClientId,
             clientId);*/
+
+        ReceiveChatMessageClientRpc(
+            $"Player {clientId} has connected to the server. Welcome!",
+            NetworkManager.LocalClientId);
+    }
+
+    private void ServerOnClientDisconnected(ulong clientId) 
+    { 
+    
     }
 
     private void DisplayMessageLocally(ulong from, string message) {
@@ -86,8 +95,9 @@ public class ChatServer : NetworkBehaviour
 
         /*clientIds[0] = from;
         ReceiveChatMessageClientRpc($"<whisper> {message}", from, rpcParams);
-
         clientIds[0] = to;*/
+
+        
         ReceiveChatMessageClientRpc($"<whisper> {message}", from, rpcParams);
     }
 }
