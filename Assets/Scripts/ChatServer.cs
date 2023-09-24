@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
+
 public class ChatServer : NetworkBehaviour
 {
     public ChatUi chatUi;
@@ -30,16 +31,21 @@ public class ChatServer : NetworkBehaviour
 
     private void ServerOnClientConnected(ulong clientId)
     {
-        /*ServerSendDirectMessage(
-            $"I ({NetworkManager.LocalClientId}) see you ({clientId}) have connected to the server, well done",
-            NetworkManager.LocalClientId,
-            clientId);*/
-
+        // Changed the greeting message from the host so it is not a whisper from the host,
+        // but just a message sent directly to the connected client.
         ReceiveChatMessageClientRpc(
-            $"Player {clientId} has connected to the server. Welcome!",
+            $"I ({NetworkManager.LocalClientId}) see you ({clientId}) have connected to the server, well done.",
+            SYSTEM_ID);
+
+
+        // Send a message to all clients when a client connects.
+        ReceiveChatMessageClientRpc(
+            $"Player {clientId} has connected to the server.",
             NetworkManager.LocalClientId);
     }
 
+
+    // Send a message to all clients when a client disconnects.
     private void ServerOnClientDisconnected(ulong clientId) 
     {
         ReceiveChatMessageClientRpc(
@@ -104,4 +110,5 @@ public class ChatServer : NetworkBehaviour
         
         ReceiveChatMessageClientRpc($"<whisper> {message}", from, rpcParams);
     }
+
 }
