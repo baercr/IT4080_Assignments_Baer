@@ -21,9 +21,11 @@ public class ChatServer : NetworkBehaviour
             } else {
                 DisplayMessageLocally(SYSTEM_ID, "You are the server");
             }
-        } else {
-            DisplayMessageLocally(SYSTEM_ID, $"You are client {NetworkManager.LocalClientId}");
+            } else {
+                DisplayMessageLocally(SYSTEM_ID, $"You are client {NetworkManager.LocalClientId}");
         }
+
+        NetworkManager.OnClientDisconnectCallback += ServerOnClientDisconnected;
     }
 
     private void ServerOnClientConnected(ulong clientId)
@@ -39,8 +41,10 @@ public class ChatServer : NetworkBehaviour
     }
 
     private void ServerOnClientDisconnected(ulong clientId) 
-    { 
-    
+    {
+        ReceiveChatMessageClientRpc(
+            $"Player {clientId} has disconnected from the server.",
+            NetworkManager.LocalClientId);
     }
 
     private void DisplayMessageLocally(ulong from, string message) {
