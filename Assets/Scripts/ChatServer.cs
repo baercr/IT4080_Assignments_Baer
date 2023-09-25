@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 
 
+
 public class ChatServer : NetworkBehaviour
 {
     public ChatUi chatUi;
@@ -33,9 +34,10 @@ public class ChatServer : NetworkBehaviour
     {
         // Changed the greeting message from the host so it is not a whisper from the host,
         // but just a message sent directly to the connected client.
-        ReceiveChatMessageClientRpc(
-            $"I ({NetworkManager.LocalClientId}) see you ({clientId}) have connected to the server, well done.",
-            SYSTEM_ID);
+        ServerSendWelcomeMessage(
+            $"I see you: ({clientId}), have connected to the server, well done.",
+            SYSTEM_ID,
+            clientId);
 
 
         // Send a message to all clients when a client connects.
@@ -109,6 +111,17 @@ public class ChatServer : NetworkBehaviour
 
         
         ReceiveChatMessageClientRpc($"<whisper> {message}", from, rpcParams);
+    }
+
+    private void ServerSendWelcomeMessage(string message, ulong from, ulong to)
+    {
+        dmClientIds[0] = from;
+        dmClientIds[1] = to;
+
+        ClientRpcParams rpcParams = default;
+        rpcParams.Send.TargetClientIds = dmClientIds;
+
+        ReceiveChatMessageClientRpc($"{message}", from, rpcParams);
     }
 
 }
