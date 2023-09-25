@@ -109,7 +109,8 @@ public class ChatServer : NetworkBehaviour
         ReceiveChatMessageClientRpc($"<whisper> {message}", from, rpcParams);
         clientIds[0] = to;*/
 
-        
+        // if (true) { };
+
         ReceiveChatMessageClientRpc($"<whisper> {message}", from, rpcParams);
     }
 
