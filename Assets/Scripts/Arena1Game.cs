@@ -77,7 +77,7 @@ public class Arena1Game : NetworkBehaviour
                 NextPosition(),
                 Quaternion.identity);
             playerSpawn.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
-            playerSpawn.playerColorNetVar.Value = NextColor();
+            playerSpawn.PlayerColor.Value = NextColor();
         }
     }
 

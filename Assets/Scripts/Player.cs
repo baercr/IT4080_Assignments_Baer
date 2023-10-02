@@ -6,21 +6,40 @@ using Unity.VisualScripting;
 
 public class Player : NetworkBehaviour
 {
+    public NetworkVariable<Color> PlayerColor = new NetworkVariable<Color>(Color.red);
+
     public float movementSpeed = 50f;
     public float rotationSpeed = 130f;
-    public NetworkVariable<Color> playerColorNetVar = new NetworkVariable<Color>(Color.red);
-
+    
     private Camera playerCamera;
     private GameObject playerBody;
 
-    private void Start() {
+    private void NetworkInit()
+    {
+        playerBody = transform.Find("PlayerBody").gameObject;
+
         playerCamera = transform.Find("Camera").GetComponent<Camera>();
         playerCamera.enabled = IsOwner;
         playerCamera.GetComponent<AudioListener>().enabled = IsOwner;
 
-        playerBody = transform.Find("PlayerBody").gameObject;
+        ApplyPlayerColor();
+        PlayerColor.OnValueChanged += OnPlayerColorChanged;
+    }
 
-        ApplyColor();
+    private void Awake()
+    {
+        NetworkHelper.Log(this, "Awake");
+    }
+
+    void Start() {
+        NetworkHelper.Log(this, "Start");
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        NetworkHelper.Log(this, "OnNetworkSpawn");
+        NetworkInit();
+        base.OnNetworkSpawn();
     }
 
     private void Update() {
@@ -40,8 +59,14 @@ public class Player : NetworkBehaviour
         }
     }
 
-    private void ApplyColor() {
-        playerBody.GetComponent<MeshRenderer>().material.color = playerColorNetVar.Value;
+    private void ApplyPlayerColor() {
+        NetworkHelper.Log(this, $"Applying color {PlayerColor.Value}");
+        playerBody.GetComponent<MeshRenderer>().material.color = PlayerColor.Value;
+    }
+
+    private void OnPlayerColorChanged(Color previous, Color current) 
+    {
+        ApplyPlayerColor();
     }
 
     [ServerRpc(RequireOwnership = true)]
