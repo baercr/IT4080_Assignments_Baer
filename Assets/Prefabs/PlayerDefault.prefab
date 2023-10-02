@@ -360,10 +360,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ccd407e4bac1c4ca1e2c2a59a9873d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerColor:
+    m_InternalValue: {r: 1, g: 0, b: 0, a: 1}
   movementSpeed: 50
   rotationSpeed: 130
-  playerColorNetVar:
-    m_InternalValue: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &4292569222261146203
 MonoBehaviour:
   m_ObjectHideFlags: 0

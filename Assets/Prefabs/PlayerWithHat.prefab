@@ -236,9 +236,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4292569222261146203, guid: 2e32265eba5f93d4293a360e2a23cce7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 951099334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734675779075502915, guid: 2e32265eba5f93d4293a360e2a23cce7, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6127493062726649798, guid: 2e32265eba5f93d4293a360e2a23cce7, type: 3}
       propertyPath: m_Name
       value: PlayerWithHat
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691935088770246016, guid: 2e32265eba5f93d4293a360e2a23cce7, type: 3}
+      propertyPath: m_Name
+      value: PlayerBody
       objectReference: {fileID: 0}
     - target: {fileID: 8400930788511883710, guid: 2e32265eba5f93d4293a360e2a23cce7, type: 3}
       propertyPath: m_RootOrder

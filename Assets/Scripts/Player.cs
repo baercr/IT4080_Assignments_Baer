@@ -42,7 +42,8 @@ public class Player : NetworkBehaviour
         base.OnNetworkSpawn();
     }
 
-    private void Update() {
+    private void Update() 
+    {
         if (IsOwner)
         {
             OwnerHandleInput();
@@ -71,7 +72,7 @@ public class Player : NetworkBehaviour
 
     [ServerRpc(RequireOwnership = true)]
     private void MoveServerRpc(Vector3 movement, Vector3 rotation)
-    {
+    {        
         transform.Translate(movement);
         transform.Rotate(rotation);
     }

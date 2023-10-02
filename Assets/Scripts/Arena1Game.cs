@@ -9,6 +9,8 @@ public class Arena1Game : NetworkBehaviour
     public Player hostPrefab;
     public Camera arenaCamera;
 
+    public Plane playerPlatform;
+
     private int colorIndex = 0;
     private Color[] playerColors = new Color[] {
         Color.blue,
@@ -61,6 +63,7 @@ public class Arena1Game : NetworkBehaviour
         {
             positionIndex = 0;
         }
+
         return pos;
     }
 
@@ -68,6 +71,7 @@ public class Arena1Game : NetworkBehaviour
         foreach (ulong clientId in NetworkManager.ConnectedClientsIds)
         {
             Player prefab = playerPrefab;
+     
             if(clientId == NetworkManager.LocalClientId) {
                 prefab = hostPrefab;
             }
