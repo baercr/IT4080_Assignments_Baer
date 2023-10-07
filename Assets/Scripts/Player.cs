@@ -58,6 +58,15 @@ public class Player : NetworkBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other) {
+        if (IsServer) {
+            if (other.CompareTag("power_up"))
+            {
+                other.GetComponent<BasePowerUp>().ServerPickup(this);
+            }
+        }
+    }
+
     private void ServerHandleCollision(Collision collision) {
         if (collision.gameObject.CompareTag("bullet")) {
             ulong ownerId = collision.gameObject.GetComponent<NetworkObject>().OwnerClientId;
