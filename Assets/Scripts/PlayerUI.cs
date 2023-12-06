@@ -6,7 +6,10 @@ using UnityEngine.UI;
 
 public class PlayerUI : NetworkBehaviour
 {
-    public Slider healthUI;
+    public Slider healthUIWS;
+
+    public Slider healthUISP;
+
     //public GameObject scoreCard;
 
     private void OnEnable()
@@ -23,11 +26,13 @@ public class PlayerUI : NetworkBehaviour
     {
         if (newValue / 100f > 1)
         {
-            healthUI.value = 1;
+            healthUIWS.value = 1;
+            healthUISP.value = 1;
         }
         else
         {
-            healthUI.value = newValue / 100f;
+            healthUIWS.value = newValue / 100f;
+            healthUISP.value = newValue / 100f;
         }
     }
 }
