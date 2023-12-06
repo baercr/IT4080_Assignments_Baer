@@ -62,31 +62,6 @@ public class Player : NetworkBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(!IsServer)
-        {
-            return;
-        }
-        if (other.GetComponent<BulletScript>())
-        {
-            Debug.Log("Player dmg " + other.GetComponent<NetworkObject>().OwnerClientId);
-
-            //NetworkManager.Singleton.ConnectedClients[other.GetComponent<NetworkObject>().OwnerClientId].PlayerObject.GetComponent<NetworkPlayerData>().score.Value += 1;
-                playerHP.Value -= 10;
-        }
-        else if (other.CompareTag("power_up"))
-        {
-            other.GetComponent<BasePowerUp>().ServerPickup(this);
-        }
-
-        /*if (IsServer) {
-            if (other.CompareTag("power_up"))
-            {
-                other.GetComponent<BasePowerUp>().ServerPickup(this);
-            }
-        } */
-    }
-
     private void ServerHandleCollision(Collision collision) {
         if (collision.gameObject.CompareTag("bullet")) {
             ulong ownerId = collision.gameObject.GetComponent<NetworkObject>().OwnerClientId;
@@ -95,6 +70,7 @@ public class Player : NetworkBehaviour
                 $"owned by {ownerId}");
             Player other = NetworkManager.Singleton.ConnectedClients[ownerId].PlayerObject.GetComponent<Player>();
             other.ScoreNetVar.Value += 1;
+            playerHP.Value -= 10;
             Destroy(collision.gameObject);
         }
     }

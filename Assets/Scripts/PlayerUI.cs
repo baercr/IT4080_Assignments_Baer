@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class PlayerUI : NetworkBehaviour
 {
     public Slider healthUI;
-    public GameObject scoreCard;
+    //public GameObject scoreCard;
 
     private void OnEnable()
     {
-        GetComponent < Player>().playerHP.OnValueChanged += HealthChanged;
+        GetComponent <Player>().playerHP.OnValueChanged += HealthChanged;
     }
 
     private void OnDisable()
