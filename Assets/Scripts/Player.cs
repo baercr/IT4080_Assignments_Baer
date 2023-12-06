@@ -7,7 +7,10 @@ using Unity.VisualScripting;
 public class Player : NetworkBehaviour
 {
     public NetworkVariable<Color> PlayerColor = new NetworkVariable<Color>(Color.red);
+
     public NetworkVariable<int> ScoreNetVar = new NetworkVariable<int>(0);
+
+    public NetworkVariable<int> playerHP = new NetworkVariable<int>();
 
     public BulletSpawner bulletSpawner;
 
@@ -16,6 +19,7 @@ public class Player : NetworkBehaviour
     
     private Camera playerCamera;
     private GameObject playerBody;
+    // private GameObject playerHead;
 
     private void NetworkInit() {
         playerBody = transform.Find("PlayerBody").gameObject;
@@ -59,12 +63,28 @@ public class Player : NetworkBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (IsServer) {
+        if(!IsServer)
+        {
+            return;
+        }
+        if (other.GetComponent<BulletScript>())
+        {
+            Debug.Log("Player dmg " + other.GetComponent<NetworkObject>().OwnerClientId);
+
+            //NetworkManager.Singleton.ConnectedClients[other.GetComponent<NetworkObject>().OwnerClientId].PlayerObject.GetComponent<NetworkPlayerData>().score.Value += 1;
+                playerHP.Value -= 10;
+        }
+        else if (other.CompareTag("power_up"))
+        {
+            other.GetComponent<BasePowerUp>().ServerPickup(this);
+        }
+
+        /*if (IsServer) {
             if (other.CompareTag("power_up"))
             {
                 other.GetComponent<BasePowerUp>().ServerPickup(this);
             }
-        }
+        } */
     }
 
     private void ServerHandleCollision(Collision collision) {
