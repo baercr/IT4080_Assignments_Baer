@@ -79,6 +79,9 @@ public class Player : NetworkBehaviour
                 $"owned by {ownerId}");
             Player other = NetworkManager.Singleton.ConnectedClients[ownerId].PlayerObject.GetComponent<Player>();
             other.ScoreNetVar.Value += 1;
+
+            // NetworkManager.Singleton.ConnectedClients[other.GetComponent<NetworkObject>().OwnerClientId].PlayerObject.GetComponent<NetworkPlayerData>().score.Value += 1;
+            
             playerHP.Value -= 10;
             Destroy(collision.gameObject);
         }
