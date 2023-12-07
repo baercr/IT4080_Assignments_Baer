@@ -13,10 +13,10 @@ public class Arena1Game : NetworkBehaviour
 
     private int positionIndex = 0;
     private Vector3[] startPositions = new Vector3[] {
-        new Vector3(4, 2, 0),
-        new Vector3(-4, 2, 0),
-        new Vector3(0, 2, 4),
-        new Vector3(0, 2, -4)
+        new Vector3(40, 2, 0),
+        new Vector3(-40, 2, 0),
+        new Vector3(0, 2, 40),
+        new Vector3(0, 2, -40)
     };
 
     private int WrapInt(int curValue, int increment, int max)

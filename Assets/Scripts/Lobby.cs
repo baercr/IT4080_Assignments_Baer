@@ -63,8 +63,6 @@ public class Lobby : NetworkBehaviour
             PopulateMyInfo();
         }
 
-        
-
     }
 
     private void ServerStartClicked()
